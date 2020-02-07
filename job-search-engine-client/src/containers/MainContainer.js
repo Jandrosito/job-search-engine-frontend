@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import LoginFormContainer from './LoginFormContainer.js'
+import Searchbox from '../components/Search.js'
+import History from '../components/History.js'
 import SignupFormContainer from './SignupFormContainer.js'
+
 
 class MainContainer extends Component {
         state = {
@@ -29,12 +32,29 @@ class MainContainer extends Component {
     }
 
     render() {
-        return (
-            <div>
-            {this.state.loginFormContainerLoad ? <LoginFormContainer loginLoadStateSet={this.loginLoadStateSet} newuserSignupLoadStateSet={this.newuserSignupLoadStateSet}/> : null}
-            {this.state.signupFormContainerLoad ? <SignupFormContainer signupLoadStateSet={this.signupLoadStateSet} userId={this.userId}/> : null}
-            </div>
-        )
+        if (this.props.activeItem === 'sign in') {
+            return(
+                <div>
+                {this.state.loginFormContainerLoad ? <LoginFormContainer loginLoadStateSet={this.loginLoadStateSet}/> : null}
+                </div>
+            )
+        } else if (this.props.activeItem === 'search') {
+            return(
+                <div>
+                    <Searchbox />
+                </div>
+            )
+        } else if (this.props.activeItem === 'history') {
+            return(
+                <div>
+                    <History />
+                </div>
+            )
+        } else {
+            return(
+                <div></div>
+            )
+        }
     }
 }
 
