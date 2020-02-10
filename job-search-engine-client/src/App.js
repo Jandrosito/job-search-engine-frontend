@@ -8,7 +8,6 @@ export default class App extends Component {
   state = {
     activeItem: 'search'
   }
-  handleClick = (e, {name}) => this.setState({activeItem: name})
   render(){
     return (
       <div className="App">
