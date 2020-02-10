@@ -2,8 +2,9 @@ import React, {Component} from 'react';
 import LoginFormContainer from './LoginFormContainer.js'
 import Searchbox from '../components/Search.js'
 import History from '../components/History.js'
+import {Segment, Grid} from 'semantic-ui-react'
 import SignupFormContainer from './SignupFormContainer.js'
-
+import SignupFormContainer from './SignupFormContainer.js'
 
 class MainContainer extends Component {
         state = {
@@ -19,9 +20,14 @@ class MainContainer extends Component {
         })
     }
 
-    signupLoadStateSet = (id = null) => {
+    signupLoadStateSet = () => {
         this.setState({
-            signupFormContainerLoad: !this.state.signupFormContainerLoad,
+            signupLoadStateSet: !this.state.signupLoadStateSet
+        })
+    }
+
+    newuserSignupLoadStateSet = (id) => {
+        this.setState({
             userId: id
         })
     }

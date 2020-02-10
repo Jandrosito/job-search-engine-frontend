@@ -36,6 +36,7 @@ class LoginForm extends Component {
             })
         })
         .then(res => res.json())
+        .then(user => this.props.newuserSignupLoadStateSet(user.id))
         .then(user => this.props.signupLoadStateSet(user.id))
     }
 
