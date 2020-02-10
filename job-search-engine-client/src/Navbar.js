@@ -2,17 +2,49 @@ import React, {Component} from 'react';
 import {Menu, Modal, Form, Button} from 'semantic-ui-react'
 
 export default class Navbar extends Component {
+  state = {
+    userId: 0,
+    username: '', 
+    password: '',
+    location: '', 
+    open: false,
+    loginState: true,
+    signupState: false,
+    user: false
+  }
 
-  state = {username: '', password: '', open: false}
+  loginHandleSubmit = e => {
+    e.preventDefault()
+    fetch("http://localhost:3000/users", {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json',
+            Accept: "application/json"
+        },
+        body: JSON.stringify({
+            username: this.state.username,
+            location: "Unknown"
+        })
+    })
+    .then(res => res.json())
+    .then(user => this.setState({userId: user.id, loginState: false, signupState: true}))
+}
 
-  handleSubmit = () => {
-    console.log(this.state.username, this.state.password)
-    this.setState({
-      username: '',
-      password: ''
+  signupFormSubmit = e => {
+    e.preventDefault()
+    fetch(`http://localhost:3000/users/${this.state.userId}`, {
+        method: "PATCH",
+        mode: 'cors',
+        headers: {
+            'Content-Type': 'application/json',
+            Accept: "application/json"
+        },
+        body: JSON.stringify({
+            location: this.state.location
+        })
     })
     this.handleClick()
-  }
+}
 
   handleClick = () => {
     this.setState({
@@ -20,20 +52,16 @@ export default class Navbar extends Component {
     })
   }
 
-  handleChange = (event) => {
-    this.setState({
-      username: event.target.value
-    })
+  handleChange = e => {
+    let {name, value} = e.target
+        this.setState({
+            [name]: value
+        })
   }
 
-  handlePChange = (event) => {
-    this.setState({
-      password: event.target.value
-    })
-  }
+  
 
   render(){
-    const { username, password } = this.state
     return (
       // <Menu size='large' attached>
       // </Menu>
@@ -55,14 +83,21 @@ export default class Navbar extends Component {
             onClick = {this.handleClick}>
             Sign In</Button>
         <Modal size = 'tiny' closeIcon onClose = {this.handleClick} open = {this.state.open}>
-          <Modal.Content>
+         {this.state.loginState ? <Modal.Content>
             <Modal.Header>Log In</Modal.Header>
-            <Form onSubmit={this.handleSubmit}>
-              <Form.Input onChange = {this.handleChange} label = 'Username' placeholder='Username' name = 'username' value = {username}/>
-              <Form.Input onChange = {this.handlePChange} label = 'Password' placeholder = 'Disabled' disabled name = 'password' value = {password}/>
-              <Button type='submit'>Submit</Button>
+            <Form onSubmit={event => this.loginHandleSubmit(event)}>
+              <Form.Input onChange = {event => this.handleChange(event)} label = 'Username' placeholder='Username' name = "username" value = {this.state.username}/>
+              <Form.Input onChange = {event => this.handleChange(event)} label = 'Password' placeholder = 'Disabled' disabled name = "password" value = {this.state.password}/>
+              <Button type='submit' value="Submit">Submit</Button>
             </Form>
-          </Modal.Content>
+          </Modal.Content> : null}
+          {this.state.signupState ? <Modal.Content>
+            <Modal.Header>Sign up</Modal.Header>
+            <Form onSubmit={event => this.signupFormSubmit(event)}>
+              <Form.Input onChange={event => this.handleChange(event)} name="location" label="location" placeholder="location" value={this.state.location}/>
+              <Button type="submit" value="Submit">Submit</Button>
+            </Form>
+            </Modal.Content> : null}
         </Modal>
       </div>
     )
