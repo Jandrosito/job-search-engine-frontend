@@ -35,27 +35,25 @@ export default class Navbar extends Component {
   render(){
     const { username, password } = this.state
     return (
-      <Menu size='large' attached>
-        <Menu.Item 
-        name = "search" active = {this.props.activeItem === 'search'}
-        onClick = {this.props.handleClick}
-        >
-          Search
-        </Menu.Item>
-        <Menu.Item 
-        name = "history" active = {this.props.activeItem === 'history'}
-        onClick = {this.props.handleClick}
-        >
-          History
-        </Menu.Item>
-        <Menu.Menu position='right'>
-            <Menu.Item 
+      // <Menu size='large' attached>
+      // </Menu>
+      //   <Menu.Item 
+      //   name = "search" active = {this.props.activeItem === 'search'}
+      //   onClick = {this.props.handleClick}
+      //   >
+      //     Search
+      //   </Menu.Item>
+      //   <Menu.Item 
+      //   name = "history" active = {this.props.activeItem === 'history'}
+      //   onClick = {this.props.handleClick}
+      //   >
+      //     History
+      //   </Menu.Item> 
+      <div>
+        <Button floated='left' 
             name = "sign in" active = {this.props.activeItem === 'sign in'}
-            onClick = {this.handleClick}
-            >
-            Sign In
-            </Menu.Item>
-        </Menu.Menu>
+            onClick = {this.handleClick}>
+            Sign In</Button>
         <Modal size = 'tiny' closeIcon onClose = {this.handleClick} open = {this.state.open}>
           <Modal.Content>
             <Modal.Header>Log In</Modal.Header>
@@ -66,7 +64,7 @@ export default class Navbar extends Component {
             </Form>
           </Modal.Content>
         </Modal>
-      </Menu>
+      </div>
     )
   }
 }
