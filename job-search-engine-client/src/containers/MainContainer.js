@@ -3,15 +3,26 @@ import LoginFormContainer from './LoginFormContainer.js'
 import Searchbox from '../components/Search.js'
 import History from '../components/History.js'
 import {Segment, Grid} from 'semantic-ui-react'
+import SignupFormContainer from './SignupFormContainer.js'
+
 class MainContainer extends Component {
         state = {
-            loginFormContainerLoad: true
+            loginFormContainerLoad: true,
+            signupFormContainerLoad: false,
+            userId: 0
         }
     
 
     loginLoadStateSet = () => {
         this.setState({
             loginFormContainerLoad: !this.state.loginFormContainerLoad
+        })
+    }
+
+    signupLoadStateSet = (id = null) => {
+        this.setState({
+            signupFormContainerLoad: !this.state.signupFormContainerLoad,
+            userId: id
         })
     }
 

@@ -5,7 +5,7 @@ class LoginFormContainer extends Component {
 
     render() {
         return (
-            <LoginForm loginLoadStateSet={this.props.loginLoadStateSet}/>
+            <LoginForm activeItem={this.props.activeItem} loginLoadStateSet={this.props.loginLoadStateSet} signupLoadStateSet={this.props.signupLoadStateSet}/>
         )
     }
 }

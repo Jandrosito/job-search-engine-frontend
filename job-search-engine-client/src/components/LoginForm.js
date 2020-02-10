@@ -18,10 +18,12 @@ class LoginForm extends Component {
         e.preventDefault()
         fetch("http://localhost:3000/users")
         .then(res => res.json())
-        .then(users => users.forEach(user => user.username === this.state.username ? this.props.loginLoadStateSet() : this.newUserPostHandle()))
+        .then(users => users.forEach(user => user.username === this.state.username ? this.props.loginLoadStateSet() : this.newUserPostHandle(e)))
     }
 
-    newUserPostHandle = () => {
+    newUserPostHandle = e => {
+        console.log("hi")
+        e.preventDefault()
         fetch("http://localhost:3000/users", {
             method: "POST",
             headers: {
@@ -29,10 +31,12 @@ class LoginForm extends Component {
                 Accept: "application/json"
             },
             body: JSON.stringify({
-                username: this.state.username
+                username: this.state.username,
+                location: "Unknown"
             })
         })
-        this.props.loginLoadStateSet()
+        .then(res => res.json())
+        .then(user => this.props.signupLoadStateSet(user.id))
     }
 
     render() {
