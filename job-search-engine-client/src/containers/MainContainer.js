@@ -19,14 +19,9 @@ class MainContainer extends Component {
         })
     }
 
-    signupLoadStateSet = () => {
+    signupLoadStateSet = (id = null) => {
         this.setState({
-            signupLoadStateSet: !this.state.signupLoadStateSet
-        })
-    }
-
-    newuserSignupLoadStateSet = (id) => {
-        this.setState({
+            signupFormContainerLoad: !this.state.signupFormContainerLoad,
             userId: id
         })
     }
@@ -35,8 +30,14 @@ class MainContainer extends Component {
         if (this.props.activeItem === 'sign in') {
             return(
                 <div>
-                {/* {this.state.loginFormContainerLoad ? <LoginFormContainer loginLoadStateSet={this.loginLoadStateSet}/> : null} */}
+                {this.state.loginFormContainerLoad ? <LoginFormContainer activeItem={this.props.activeItem} loginLoadStateSet={this.loginLoadStateSet} signupLoadStateSet={this.signupLoadStateSet}/> : null}
                 </div>
+            )
+        } else if (this.signupFormContainerLoad === true) {
+            return (
+                <div>
+            {this.state.signupFormContainerLoad ? <SignupFormContainer signupLoadStateSet={this.signupLoadStateSet} userId={this.userId}/> : null}
+            </div>
             )
         } else if (this.props.activeItem === 'search') {
             return(
