@@ -32,7 +32,8 @@ class LoginForm extends Component {
                 username: this.state.username
             })
         })
-        this.props.loginLoadStateSet()
+        .then(res => res.json())
+        .then(user => this.props.newuserSignupLoadStateSet(user.id))
     }
 
     render() {
