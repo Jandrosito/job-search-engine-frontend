@@ -35,7 +35,7 @@ class MainContainer extends Component {
         if (this.props.activeItem === 'sign in') {
             return(
                 <div>
-                {this.state.loginFormContainerLoad ? <LoginFormContainer loginLoadStateSet={this.loginLoadStateSet}/> : null}
+                {/* {this.state.loginFormContainerLoad ? <LoginFormContainer loginLoadStateSet={this.loginLoadStateSet}/> : null} */}
                 </div>
             )
         } else if (this.props.activeItem === 'search') {
