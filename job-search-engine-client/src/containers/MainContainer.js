@@ -6,30 +6,6 @@ import {Segment, Grid} from 'semantic-ui-react'
 import SignupFormContainer from './SignupFormContainer.js'
 
 class MainContainer extends Component {
-        state = {
-            loginFormContainerLoad: true,
-            signupFormContainerLoad: false,
-            userId: 0
-        }
-    
-
-    loginLoadStateSet = () => {
-        this.setState({
-            loginFormContainerLoad: !this.state.loginFormContainerLoad
-        })
-    }
-
-    signupLoadStateSet = () => {
-        this.setState({
-            signupLoadStateSet: !this.state.signupLoadStateSet
-        })
-    }
-
-    newuserSignupLoadStateSet = (id) => {
-        this.setState({
-            userId: id
-        })
-    }
 
     render() {
         return(
