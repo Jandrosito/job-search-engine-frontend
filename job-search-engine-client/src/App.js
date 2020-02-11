@@ -12,7 +12,7 @@ export default class App extends Component {
     return (
       <div className="App">
         <Heading/>
-        <Navbar handleClick = {this.handleClick} activeItem = {this.state.activeItem}/>
+        <Navbar activeItem = {this.state.activeItem}/>
         <MainContainer activeItem = {this.state.activeItem}/>
       </div>
     )
