@@ -34,7 +34,6 @@ export default class Navbar extends Component {
     e.preventDefault()
     fetch(`http://localhost:3000/users/${this.state.userId}`, {
         method: "PATCH",
-        mode: 'cors',
         headers: {
             'Content-Type': 'application/json',
             Accept: "application/json"
@@ -43,7 +42,12 @@ export default class Navbar extends Component {
             location: this.state.location
         })
     })
+    .then(resp => resp.json())
+    .then(user => {
+    this.setState({signupState: false})
     this.handleClick()
+    window.alert(`Welcome ${user.username}!`)
+  })
 }
 
   handleClick = () => {
@@ -59,7 +63,10 @@ export default class Navbar extends Component {
         })
   }
 
-  
+  signoutHandle = () => {
+    window.alert("Logout Successful")
+    this.setState({loginState: true})
+  }
 
   render(){
     return (
@@ -78,10 +85,9 @@ export default class Navbar extends Component {
       //     History
       //   </Menu.Item> 
       <div>
-        <Button floated='left' 
+        {this.state.loginState ? <Button floated='left' 
             name = "sign in" active = {this.props.activeItem === 'sign in'}
-            onClick = {this.handleClick}>
-            Sign In</Button>
+            onClick = {this.handleClick}>Sign In</Button> : <Button floated='left' onClick={this.signoutHandle} name="sign out">Sign out</Button>}
         <Modal size = 'tiny' closeIcon onClose = {this.handleClick} open = {this.state.open}>
          {this.state.loginState ? <Modal.Content>
             <Modal.Header>Log In</Modal.Header>
