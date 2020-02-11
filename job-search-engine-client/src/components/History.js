@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {List} from 'semantic-ui-react'
+import {List, Segment} from 'semantic-ui-react'
 
 const searches = [
     {
@@ -18,19 +18,24 @@ const searches = [
 
 export default class History extends Component {
     render(){
-        return(
-            <List divided relaxed size='big'>
-                {
-                    searches.map(search => 
-                        <List.Item>
-                            <List.Content>
-                                <List.Header>{search.time}</List.Header>
-                                    <List.Description>{search.content}</List.Description>
-                            </List.Content> 
-                        </List.Item>
-                    )
-                }
-            </List>
+        return(<div>
+            <Segment></Segment>
+                <Segment>
+                    <List divided relaxed size='big'>
+                        <List.Header>Past Results</List.Header>
+                        {
+                            searches.map(search => 
+                                <List.Item>
+                                    <List.Content>
+                                        <List.Header>{search.time}</List.Header>
+                                            <List.Description>{search.content}</List.Description>
+                                    </List.Content> 
+                                </List.Item>
+                            )
+                        }
+                    </List>
+                </Segment>
+            </div>
         )
     }
 }
