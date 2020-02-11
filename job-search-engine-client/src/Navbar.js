@@ -50,6 +50,10 @@ export default class Navbar extends Component {
   })
 }
 
+  handleProfileClick = () => {
+    this.props.handleClick()
+  }
+
   handleClick = () => {
     this.setState({
       open: !this.state.open
@@ -105,6 +109,10 @@ export default class Navbar extends Component {
             </Form>
             </Modal.Content> : null}
         </Modal>
+        <Button floated='left' 
+          name = "profile" active = {this.props.activeItem === 'sign in'}
+          onClick = {this.handleProfileClick}>
+          Profile</Button>
       </div>
     )
   }

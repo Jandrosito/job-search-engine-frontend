@@ -3,8 +3,6 @@ import Searchbox from '../components/Search.js'
 import History from '../components/History.js'
 import {Segment, Grid} from 'semantic-ui-react'
 
-
-
 class MainContainer extends Component {
 
     render() {
