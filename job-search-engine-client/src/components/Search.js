@@ -3,6 +3,8 @@ import {Search, Grid, Segment, Header} from 'semantic-ui-react'
 
 const initialState = {isLoading: false, results: [], value: ''}
 
+let topicList = []
+
 const categories = [
     {
       "title": "Fadel - Pollich",
@@ -11,7 +13,7 @@ const categories = [
       "price": "$4.35"
     },
     {
-      "title": "Carter, Mohr and Zemlak",
+      "title": "Farter, Mohr and Zemlak",
       "description": "Organized stable Graphic Interface",
       "image": "https://s3.amazonaws.com/uifaces/faces/twitter/therealmarvin/128.jpg",
       "price": "$45.00"
@@ -35,7 +37,7 @@ const categories = [
       "price": "$56.39"
     }
   ]
-
+  
 export default class Searchbox extends Component {
 
     state = initialState
@@ -46,9 +48,15 @@ export default class Searchbox extends Component {
         })
     }
 
+    componentDidMount() {
+    fetch("http://localhost:3000/interests")
+    .then(res => res.json())
+    .then(topics => topicList.push(topics))
+  }
+
     handleSearchChange = (e, { value }) => {
         this.setState({ isLoading: true, value})
-        let matches = categories.filter(cat => cat.title.slice(0,value.length).toLowerCase() === value.toLowerCase())
+        let matches = topicList[0].filter(cat => cat.title.slice(0,value.length).toLowerCase() === value.toLowerCase())
         console.log(matches)
         setTimeout(() => {
             if(this.state.value.length < 1) return this.setState(initialState)
@@ -57,10 +65,13 @@ export default class Searchbox extends Component {
             results: matches
             })
         }, 300)
+        console.log(matches)
     }
 
     render(){
         const { isLoading, value, results } = this.state
+        console.log(results)
+        console.log(value)
         return(
             <Search aligned = 'left'
             
