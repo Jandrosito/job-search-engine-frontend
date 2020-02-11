@@ -6,12 +6,15 @@ export default class Navbar extends Component {
   state = {username: '', password: '', open: false}
 
   handleSubmit = () => {
-    console.log(this.state.username, this.state.password)
     this.setState({
       username: '',
       password: ''
     })
     this.handleClick()
+  }
+
+  handleProfileClick = () => {
+    this.props.handleClick()
   }
 
   handleClick = () => {
@@ -51,9 +54,9 @@ export default class Navbar extends Component {
       //   </Menu.Item> 
       <div>
         <Button floated='left' 
-            name = "sign in" active = {this.props.activeItem === 'sign in'}
-            onClick = {this.handleClick}>
-            Sign In</Button>
+        name = "sign in" active = {this.props.activeItem === 'sign in'}
+        onClick = {this.handleClick}>
+        Sign In</Button>
         <Modal size = 'tiny' closeIcon onClose = {this.handleClick} open = {this.state.open}>
           <Modal.Content>
             <Modal.Header>Log In</Modal.Header>
@@ -64,6 +67,10 @@ export default class Navbar extends Component {
             </Form>
           </Modal.Content>
         </Modal>
+        <Button floated='left' 
+          name = "profile" active = {this.props.activeItem === 'sign in'}
+          onClick = {this.handleProfileClick}>
+          Profile</Button>
       </div>
     )
   }
