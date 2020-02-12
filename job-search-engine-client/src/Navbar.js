@@ -6,7 +6,7 @@ export default class Navbar extends Component {
     userId: 0,
     username: '', 
     password: '',
-    location: '', 
+    location: '',
     open: false,
     loginState: true,
     signupState: false,
@@ -49,10 +49,6 @@ export default class Navbar extends Component {
     window.alert(`Welcome ${user.username}!`)
   })
 }
-
-  handleProfileClick = () => {
-    this.props.handleClick()
-  }
 
   handleClick = () => {
     this.setState({
@@ -111,7 +107,7 @@ export default class Navbar extends Component {
         </Modal>
         <Button floated='left' 
           name = "profile" active = {this.props.activeItem === 'sign in'}
-          onClick = {this.handleProfileClick}>
+          onClick = {this.props.changeActiveItem}>
           Profile</Button>
       </div>
     )
