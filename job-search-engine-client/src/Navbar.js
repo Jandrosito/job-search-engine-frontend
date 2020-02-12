@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Menu, Modal, Form, Button} from 'semantic-ui-react'
+import {Modal, Form, Button} from 'semantic-ui-react'
 
 export default class Navbar extends Component {
   state = {

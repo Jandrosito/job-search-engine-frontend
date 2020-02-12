@@ -10,7 +10,7 @@ export default class App extends Component {
   }
   render(){
     return (
-      <div className="App">
+      <div className="App" style={{padding: '0 2rem'}}>
         <Heading/>
         <Navbar activeItem = {this.state.activeItem}/>
         <MainContainer activeItem = {this.state.activeItem}/>
