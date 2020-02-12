@@ -4,8 +4,6 @@ import History from '../components/History.js'
 import SearchResult from '../components/SearchResults.js'
 import {Grid, Loader} from 'semantic-ui-react'
 
-
-
 class MainContainer extends Component {
     state = {
         keyWord: "",

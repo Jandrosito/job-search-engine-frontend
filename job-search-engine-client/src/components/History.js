@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {List} from 'semantic-ui-react'
+import {List, Segment} from 'semantic-ui-react'
 
 export default class History extends Component {
     state = {
@@ -43,6 +43,7 @@ export default class History extends Component {
                     )
                 }
             </List>
+
         )
     }
 }

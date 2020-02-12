@@ -6,7 +6,7 @@ export default class Navbar extends Component {
     userId: 0,
     username: '', 
     password: '',
-    location: '', 
+    location: '',
     open: false,
     loginState: true,
     signupState: false,
@@ -105,6 +105,10 @@ export default class Navbar extends Component {
             </Form>
             </Modal.Content> : null}
         </Modal>
+        <Button floated='left' 
+          name = "profile" active = {this.props.activeItem === 'sign in'}
+          onClick = {this.props.changeActiveItem}>
+          Profile</Button>
       </div>
     )
   }
