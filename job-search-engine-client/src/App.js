@@ -27,6 +27,8 @@ export default class App extends Component {
 
   render(){
     return (
+      edwrdbranch7
+      <div className="App" style={{padding: '0 2rem'}}>
       this.state.activeItem === 'search' ? 
       <div className="App">
         <Heading/>
