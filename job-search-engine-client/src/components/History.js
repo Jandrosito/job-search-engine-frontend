@@ -19,7 +19,7 @@ const searches = [
 export default class History extends Component {
     render(){
         return(<div>
-            <Segment></Segment>
+            <div></div>
                 <Segment>
                     <List divided relaxed size='big'>
                         <List.Header>Past Results</List.Header>
